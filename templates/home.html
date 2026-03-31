@@ -1,0 +1,217 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>.grid-container {
+    display: grid;
+    /* This creates a responsive grid: minimum width of 200px per column, as many as can fit */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; /* Spacing between grid items */
+    padding: 30px;
+    margin: 20px;
+}
+
+   .grid-item {
+      border: 1px solid #ccc;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.1);
+   }
+   #grid_item img {
+   width: 100%;
+   height: 200px;
+   object-fit: cover; /* Scales to cover the entire container, cropping overflow */
+   /* Other values: 'contain' (fits entirely inside), 'fill' (stretches), etc. */
+   }
+</style>
+      <!-- banner section start -->
+      <div class="banner_section layout_padding">
+         <div id="my_slider" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="banner_taital_main">
+                              <h1 class="banner_taital">Welcome to Betty Hair & Beauty Salon!</h1>
+                              <p class="banner_text">Everthing is possible with our salon</p>
+                              <div class="appointment_bt"><a href="{% url 'contact' %}"">Call for an appointment</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="banner_taital_main">
+                              <h1 class="banner_taital">Everthing is possible with our salon!</h1>
+                              <p class="banner_text">We make the best makeup in 515 West Ave Norwalk</p>
+                              <div class="appointment_bt"><a href="{% url 'contact' %}">Call for an appointment</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <div class="container">
+                     <div class="row">
+                        <div class="col-sm-12">
+                           <div class="banner_taital_main">
+                              <h1 class="banner_taital">Everthing is possible with our salon!</h1>
+                              <p class="banner_text">We make the best hairdressing in 515 West Ave Norwalk</p>
+                              <div class="appointment_bt"><a href="{% url 'contact' %}">Call for an appointment</a></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+            <i class="fa fa-angle-left" style="font-size:24px"></i>
+            </a>
+            <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+            <i class="fa fa-angle-right" style="font-size:24px"></i>
+          
+            </a>
+         </div>
+      </div>
+      <!-- banner section end -->
+
+      <!-- gallery section start -->
+      <div class="gallery_section layout_padding">
+         <div class="container">
+            <h1 class="gallery_taital">Hair & Beauty Salon</h1>
+            <div class="gallery_section_2">
+               <div class="grid-container" id="grid_item">
+                  {% for card in blog_post %}
+                  <div class="grid-item">
+                     <img src='{{ card.image.url }}' class="card-img-top" alt="...">
+                     <h1>{{ card.title }}</h1>
+                     <h2>{{ card.headings }}</h2>
+                     <!-- <h4>{{ card.desc| slice:"0:70" }}</h4> -->
+                     <!-- Add other fields as needed -->
+                      <div class="readmore_bt"><a href="{% url 'services' %}">Book Service</a></div>
+                     <!-- <div >
+                        <a href="{% url 'services' %}" id="book_service_bt">Book Service</a>
+                        <a href="{% url 'blog_details' card.pk %}" id="read_more_bt">Read Post</a>
+                     </div> -->
+                  </div>
+                  {% endfor %}
+               </div>
+           
+            </div>
+            <!-- <div class="seemore_bt"><a href="#!">See More</a></div> -->
+         </div>
+      </div>
+      <!-- gallery section end -->
+
+
+            <!-- video 1 section start -->
+      <div class="blog_section layout_padding">
+         <div class="container">
+            <h1 class="blog_taital">Our Blog</h1>
+            <div class="blog_box">
+               <div class="blog_box_left">
+                  <div class="hover01 column">
+                     <figure>
+                        <video autoplay muted loop id="myVideo">
+                           <source src="{% static 'videos/animatecreate-a-video.mp4' %}" type="video/mp4">
+                        </video>
+                     </figure>
+                  </div>
+               </div>
+               <div class="blog_box_right">
+                  <h2 class="good_text">Good Hair Style</h2>
+                  <p class="post_text">Post by: Hair <span class="date_text">31 March</span></p>
+                  <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using LoremIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+                  <div class="read_bt_1"><a href="#!">Read More</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+      <!-- blog section start -->
+      <div class="blog_section layout_padding">
+         <div class="container">
+            <h1 class="blog_taital">Our profession</h1>
+            <div class="blog_box">
+               <div class="blog_box_left">
+                  <div class="hover01 column">
+                     <figure><img src="{% static 'images/blog-img.png' %}"></figure>
+                  </div>
+               </div>
+               <div class="blog_box_right">
+                  <h2 class="good_text">Professional Style Makeup</h2>
+                  <!-- <p class="post_text">Post by: Hair <span class="date_text">31 March</span></p> -->
+                  <p class="lorem_text">
+                     A successful makeup artist must have strong artistic skills and a good understanding of colors, skin tones, and facial features. They should know how to apply foundation, concealer, eye makeup, lipstick, and other products professionally. Communication skills are also important because they need to understand the client’s preferences and requirements. Hygiene and cleanliness are essential in this profession.
+                  </p>
+                  <div class="read_bt_1"><a href="#!">Read More</a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- blog section end -->
+      <!-- about section start -->
+      <div class="about_section layout_padding">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-md-6 padding_left_0">
+                  <div><img src="{% static 'images/about-img.png' %}" class="about_img"></div>
+               </div>
+               <div class="col-md-6">
+                  <div class="about_taital_main">
+                     <h1 class="about_taital">About Us</h1>
+                     <p class="about_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using LoremIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using LoremIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+                     <div class="readmore_bt"><a href="#!">Read More</a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- about section end -->
+  
+           <!-- contact section start -->
+      <div class="contact_section layout_padding" style="border: 2px solid rgb(202, 200, 200); border-radius: 5px;padding: 5px;">
+         <div class="container">
+            <h1 class="contact_taital">Book an Appointment</h1>
+            <div class="contact_section_2">
+               <form action="#" method="post">
+               <div class="row">
+                  <div class="col-md-6">
+                     <input type="text" class="email_text" placeholder="Name" name="Name" required>
+                  </div>
+                  <div class="col-md-6">
+                     <input type="text" class="email_text" placeholder="Phone Number" name="Phone Number" required>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-md-6">
+                     <input type="datetime-local" class="email_text" placeholder="Select Booking Date" required />
+                  </div>
+                  <div class="col-md-6">
+                     <select id="service"class="email_text" name="service" required>
+                        <option value="">Choose a service</option>
+                        <option value="haircut">Haircut & Styling</option>
+                        <option value="manicure">Manicure & Pedicure</option>
+                        <option value="facial">Facial & Skincare</option>
+                        <option value="makeup">Makeup Application</option>
+                        <option value="spa">Spa Treatments</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="book_btn"><a href="#!">Book Now</a></div>
+               </form>
+               
+            </div>
+            <!-- <div class="book_btn"><a href="#!">Book Now</a></div> -->
+         </div>
+      </div>
+      <!-- contact section end --> 
+
+{% endblock %}

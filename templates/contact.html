@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+   <!-- contact section start -->
+   <div class="contact_section layout_padding" style="border: 2px solid rgb(202, 200, 200);border-radius: 5px;padding: 5px;">
+      <div class="container">
+         <h1 class="contact_taital">Book an Appointment</h1>
+         <div class="contact_section_2">
+            <form action="#" method="post">
+            <div class="row">
+               <div class="col-md-6">
+                  <input type="text" class="email_text" placeholder="Name" name="Name" required>
+               </div>
+               <div class="col-md-6">
+                  <input type="text" class="email_text" placeholder="Phone Number" name="Phone Number" required>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <input type="datetime-local" class="email_text" placeholder="Select Booking Date" required />
+               </div>
+               <div class="col-md-6">
+                  <select id="service"class="email_text" name="service" required>
+                     <option value="">Choose a service</option>
+                     <option value="haircut">Haircut & Styling</option>
+                     <option value="manicure">Manicure & Pedicure</option>
+                     <option value="facial">Facial & Skincare</option>
+                     <option value="makeup">Makeup Application</option>
+                     <option value="spa">Spa Treatments</option>
+                  </select>
+               </div>
+            </div>
+            <div class="book_btn"><a href="#!">Book Now</a></div>
+            </form>
+            
+         </div>
+         <!-- <div class="book_btn"><a href="#!">Book Now</a></div> -->
+      </div>
+   </div>
+   <!-- contact section end --> 
+
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style> 
+  :root {
+  --main_background_color: #f764ea; /* Global variable */
+}
+
+table, th, td {
+  border: 1px solid rgb(43, 14, 14);
+  border-collapse: collapse;
+}
+th, td {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+  padding-right: 40px;
+  font-size: large;
+}
+th {
+  background-color: var(--main_background_color);
+  color: white;
+}
+tr:nth-child(even) {
+  background-color: #dbdada;
+  color: rgb(20, 1, 1);
+}
+tr:nth-child(odd) {
+  background-color: #f0eeee;
+  color: rgb(20, 1, 1);
+}
+</style>
+<style>
+
+.modal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+}
+
+.modal-content{
+    background:white;
+    width:400px;
+    padding:20px;
+    border-radius:10px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: rgb(236, 231, 231);
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=password] , .form-container input[type=date] , .form-container input[type=time] {
+  width: 100%;
+  margin: 5px;
+  border:var(--main_background_color)solid 1px;
+  background: #e4e3e3;
+  color: black;
+}
+
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password]:focus, .form-container input[type=date]:focus , .form-container input[type=time]:focus {
+  background-color: #ddd;
+  outline: none;
+} 
+
+</style>
+<!-- blog section start -->
+<div class="blog_section layout_padding">
+   <div class="container">
+      <h1 class="blog_taital">List Of Service</h1>
+        <!-- <h2>Cellpadding - top - bottom - left - right </h2> -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th hidden>ID</th>
+                    <th>Services</th>
+                    <th>Service Type</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>     </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in service_subcategories %}
+                    <tr>
+                     <td hidden>{{ item.pk }}</td>
+                     <td>{{ item.serv_cotegory }}</td>
+                     <td>{{ item.type_of_serv_cotegory }}</td>
+                     <td>{{ item.about_the_service }}</td>
+                     <!-- <td>{{ item.serv_cotegory.describ_service }}   book_service_apply_bt </td> -->
+                     <td>Rs. {{ item.price }}</td>
+                     <td><button id="book_service_apply_bt" type="button" onclick="openBooking(this)">Book</button></td>
+                    </tr>
+                {% endfor %}
+            </tbody> 
+        </table>
+   </div>
+</div>
+<!-- blog section end -->
+
+<div id="bookingModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2><b>Confirm Booking</b></h2>
+        <h5><b>Service Name:</b> <span id="serviceName"></span></h5>
+        <h5><b>Selected Service :</b> <span id="serviceType"></span></h5>
+        <h5><b>Price:</b><span id="servicePrice"></span></h5>
+
+        <form method="POST" action="{% url 'service_booking_apply' %}" class="form-container">
+            {% csrf_token %}
+            <input type="hidden" name="service_id" id="serviceIdInput">
+            <input type="hidden" name="service_name" id="serviceNameInput">
+            <input type="text" placeholder="Enter Your Name" id="user_name" name="user_name" required><br>
+            <input type="text" placeholder="Enter Your Email"  id="email_id" name="email_id" ><br>
+            <input type="text" placeholder="Enter Your Mobile Number"  id="mobileNumber" name="mobileNumber" required><br>
+            <input type="text" placeholder="Enter Your Address" id="address" name="address"><br><br>
+            <input type="date" name="booking_date" id="booking_date" class="" placeholder="Select Your Booking Date" required />
+            <input type="time" name="booking_time" id="booking_time" class="" placeholder="Select Your Booking Time" required />
+            <!-- <button type="submit" id="book_service_apply_bt" style="margin-left: 15px;" onclick="whatsappBtn(this)">Confirm</button> -->
+            <button type="button" id="book_service_apply_bt" onclick="closeModal()">Cancel</button>
+            <button type="submit" id="book_service_apply_bt" style="margin-left: 25px;" >Confirm</button>
+            <!-- <a id="whatsappBtn" target="_blank">Confirm & Send on WhatsApp</a> -->
+
+        </form>
+
+    </div> 
+
+</div>
+
+
+<!-- video 1 section start -->
+<div class="blog_section layout_padding">
+   <div class="container">
+      <h1 class="blog_taital">Our Blog</h1>
+      <div class="blog_box">
+         <div class="blog_box_left">
+            <div class="hover01 column">
+               <figure>
+                  <video autoplay muted loop id="myVideo">
+                     <source src="{% static 'videos/animatecreate-a-video.mp4' %}" type="video/mp4">
+                  </video>
+               </figure>
+            </div>
+         </div>
+         <div class="blog_box_right">
+            <h2 class="good_text">Good Hair Style</h2>
+            <p class="post_text">Post by: Hair <span class="date_text">31 March</span></p>
+            <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using LoremIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+            <div class="read_bt_1"><a href="#!">Read More</a></div>
+         </div>
+      </div>
+   </div>
+</div>
+<!-- video 1 section end -->
+<script>
+
+function openBooking(button){
+    let row = button.closest("tr")
+
+    let id = row.cells[0].innerText
+    let services = row.cells[1].innerText
+    let service_type = row.cells[2].innerText
+    let duration = row.cells[3].innerText
+    let price = row.cells[4].innerText
+
+    document.getElementById("serviceName").innerText = services
+    document.getElementById("servicePrice").innerText = price
+    document.getElementById("serviceType").innerText = service_type
+
+    document.getElementById("serviceIdInput").value = id
+    document.getElementById("serviceNameInput").value = name
+
+    document.getElementById("bookingModal").style.display = "block"
+}
+
+function closeModal(){
+    document.getElementById("bookingModal").style.display = "none"
+}
+// function whatsappBtn(button){
+//     document.getElementById("whatsappBtn").href = whatsapp_url;
+// }
+
+</script>
+
+{% endblock %}

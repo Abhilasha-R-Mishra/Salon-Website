@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<style>.grid-container {
+    display: grid;
+    /* This creates a responsive grid: minimum width of 200px per column, as many as can fit */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 20px; /* Spacing between grid items */
+    padding: 30px;
+    margin: 20px;
+}
+
+   .grid-item {
+      border: 1px solid #ccc;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 2px 2px 6px 0px rgba(0,0,0,0.1);
+   }
+   #grid_item img {
+   width: 100%;
+   height: 200px;
+   object-fit: cover; /* Scales to cover the entire container, cropping overflow */
+   /* Other values: 'contain' (fits entirely inside), 'fill' (stretches), etc. */
+   }
+</style>
+
+      <!-- gallery section start -->
+      <div class="gallery_section layout_padding">
+         <div class="container">
+            <h1 class="gallery_taital">Enhancing Beauty, Inspiring Confidence</h1>
+            <div class="gallery_section_2">
+               <div class="grid-container" id="grid_item">
+                  {% for card in service_subcategories %}
+                  <div class="grid-item">
+                     <img src='{{ card.image.url }}' class="card-img-top" alt="...">
+                     <h1>{{ card.type_service }}</h1>
+                     <h4>{{ card.describ_service| slice:"0:70" }}</h4>
+                     <!-- Add other fields as needed -->
+                  </div>
+                  {% endfor %}
+               </div>
+           
+            </div>
+            <div class="seemore_bt"><a href="#!">See More</a></div>
+         </div>
+      </div>
+      <!-- gallery section end -->
+
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+/* Popup background */
+.popup {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+}
+
+/* Popup content */
+.popup-content {
+  background: white;
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Button style */
+.btn {
+  padding: 10px 20px;
+  background: #ff4d6d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+</style>
+
+<!-- title,headings,category,desc,created_at,updated_at,image -->
+<!-- blog section start -->
+      <!-- gallery section start -->
+      <div class="blog_section layout_padding">
+         <div class="container">
+            <h1 class="blog_taital">Hair & Beauty Salon</h1>
+            <div class="blog_box1">
+               <div class="blog_box"></div>
+                  <div class="blog_box_left">
+                     <div class="hover01 column">
+                        <figure><img src="{{ blog_details.image.url }}" alt="Blog Image"></figure>
+                     </div>
+                  </div>
+                  <div class="blog_box_right">
+                     <h2 class="good_text">{{ blog_details.title }}</h2>
+                     <h2 class="post_text">Post by: {{ blog_details.author }} <span class="date_text">{{ blog_details.created_at|date:"d M Y" }}</span></h2>
+                     <h3 class="good_text">{{ blog_details.headings }}</h3>
+                     <p class="good_text">{{ blog_details.desc1 }}</p>
+                     <!-- <div class="read_bt_1"><a href="#!">Read More</a></div> -->
+                  </div>
+               </div>
+               <div class="blog_box_bottoms">
+                  <h2 class="lorem_text">{{ blog_details.siub_head1 }}</h2>
+                  <p class="lorem_text">{{ blog_details.desc2 }}</p>
+                  <h2 class="lorem_text">{{ blog_details.sub_head2 }}</h2>
+                  <p class="lorem_text">{{ blog_details.desc3 }}</p>
+                  <p class="lorem_text">{{ blog_details.desc4 }}</p>
+               </div>
+            </div>
+            
+         </div>
+      </div>
+      <!-- gallery section end -->
+<!-- blog section end -->
+<!-- title,headings,category,desc,created_at,updated_at,image -->
+<!-- blog section start -->
+
+<div id="popup" class="popup">
+  <div class="popup-content">
+   <div class="container">
+      <h1 class="blog_taital"><samp>{{ blog_details.category }}</samp>{{ blog_details.headings }}</h1>
+      <div class="blog_box">
+         <div class="blog_box_left">
+            <div class="hover01 column">
+               <figure><img src="{{ blog_details.image.url }}" alt="Blog Image"></figure>
+            </div>
+         </div>
+         <div class="blog_box_right">
+            <h2 class="good_text">{{ blog_details.title }}</h1></h2>
+            <!-- <p class="post_text">Post by: Hair <span class="date_text">31 March</span></p> -->
+            <p class="lorem_text">{{ blog_details.desc }}</p>
+            <!-- <div class="read_bt_1"><a href="#!">Read More</a></div> -->
+            <button class="btn" onclick="closePopup()">Close</button>
+
+
+         </div>
+      </div>
+   </div>
+  </div>
+</div>
+<!-- blog section end -->
+
+<!-- video 1 section start -->
+<div class="blog_section layout_padding">
+   <div class="container">
+      <h1 class="blog_taital">Our Blog</h1>
+      <div class="blog_box">
+         <div class="blog_box_left">
+            <div class="hover01 column">
+               <figure>
+                  <video autoplay muted loop id="myVideo">
+                     <source src="{% static 'videos/animatecreate-a-video.mp4' %}" type="video/mp4">
+                  </video>
+               </figure>
+            </div>
+         </div>
+         <div class="blog_box_right">
+            <h2 class="good_text">Good Hair Style</h2>
+            <p class="post_text">Post by: Hair <span class="date_text">31 March</span></p>
+            <p class="lorem_text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using LoremIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem</p>
+            <div class="read_bt_1"><a href="#!">Read More</a></div>
+         </div>
+      </div>
+   </div>
+</div>
+<script>
+function openPopup() {
+  document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+  document.getElementById("popup").style.display = "none";
+}
+</script>
+{% endblock %}

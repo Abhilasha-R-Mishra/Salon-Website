@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+
+.about-section{
+    padding:60px 20px;
+    background:#f9f9f9;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+}
+
+.row{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+}
+
+.col-md-6{
+    width:50%;
+    padding:20px;
+}
+
+.about-img{
+    width:100%;
+    border-radius:10px;
+}
+
+h2{
+    font-size:32px;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:16px;
+    line-height:1.7;
+    margin-bottom:15px;
+}
+
+.btn-book{
+    display:inline-block;
+    padding:12px 25px;
+    background:#4a4646;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+}
+
+.btn-book:hover{
+    background:#242323;
+}
+
+/* Responsive */
+
+@media (max-width:768px){
+
+.col-md-6{
+    width:100%;
+}
+
+}
+
+</style>
+<section class="about-section">
+    <div class="container">
+        <div class="row">
+
+            <!-- Left Side Image -->
+            <div class="col-md-6">
+                <img src="{% static 'images/about-img.png' %}" class="about-img" alt="Salon Image">
+            </div>
+
+            <!-- Right Side Content -->
+            <div class="col-md-6">
+                <h2>{{ salon_name }}</h2>
+                <p>
+                    Welcome to <strong>{{ salon_name }}</strong>, where beauty meets professionalism.
+                    We believe that beauty is not only about appearance but also about confidence 
+                    and self-care. Our salon is dedicated to providing high-quality beauty services 
+                    that help our clients look and feel their best.
+                </p>
+
+                <p>
+                    Our team consists of experienced and certified beauty professionals who are 
+                    passionate about their work. We specialize in services such as 
+                    <strong>makeup, facials, skincare treatments, hair styling, and beauty therapy</strong>.
+                </p>
+
+                <p>
+                    Our mission is to enhance natural beauty and provide a relaxing environment 
+                    where every client enjoys a premium beauty experience.
+                </p>
+
+                <a href="{% url 'contact' %}" class="btn-book">Book Appointment</a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
