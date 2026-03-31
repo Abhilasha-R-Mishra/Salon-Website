@@ -18,10 +18,6 @@ def home(request):
     service_categories = ServiceCotegory.objects.all()
     service_subcategories = ServiceSubCotegory.objects.all()
     blog_post = blogs.objects.all()
-    # context = {
-    #     'service_categories': service_categories,
-    #     'service_subcategories': service_subcategories
-    # }
     return render(request, 'home.html', {'service_categories': service_categories, 'service_subcategories': service_subcategories, 'blog_post': blog_post})
 
 def about(request):
